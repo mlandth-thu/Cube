@@ -1,3 +1,4 @@
 F:\_m2\repos\cg\3D\OpenGL-3D-Game-Tutorial-Series\Tutorial7_Cube\x64\Debug\OpenGLGame.exe
 D:\cg\3D\OpenGL-3D-Game-Tutorial-Series\Tutorial7_Cube\x64\Debug\OpenGLGame.exe
 D:\cg\3D\Cube\x64\Debug\OpenGLGame.exe
+D:\cg\3D\Cube\Cube\x64\Debug\OpenGLGame.exe

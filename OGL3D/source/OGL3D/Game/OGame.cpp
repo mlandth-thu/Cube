@@ -206,6 +206,11 @@ void OGame::onUpdate()
 	m_scale += 0.3f * deltaTime;
 	auto currentScale = abs(sin(m_scale));
 
+	auto modifier = 1.1f;
+
+	auto xrot = m_scale * modifier;
+	auto yrot = m_scale * (modifier+1.0f);
+	auto zrot = m_scale * (modifier+2.0f);
 
 	OMat4 world,projection,temp;
 
@@ -213,17 +218,19 @@ void OGame::onUpdate()
 	temp.setScale(OVec3(1, 1, 1));
 	world *= temp;
 
+
 	temp.setIdentity();
-	temp.setRotationZ(m_scale);
+	temp.setRotationX(xrot);
 	world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationY(m_scale);
+	temp.setRotationY(yrot);
 	world *= temp;
 
 	temp.setIdentity();
-	temp.setRotationX(m_scale);
+	temp.setRotationZ(zrot);
 	world *= temp;
+
 
 	temp.setIdentity();
 	temp.setTranslation(OVec3(0, 0, 0));
@@ -238,13 +245,14 @@ void OGame::onUpdate()
 	m_graphicsEngine->clear(OVec4(0, 0, 0, 1));
 
 	m_graphicsEngine->setFaceCulling(OCullType::BackFace);
-	m_graphicsEngine->setWindingOrder(OWindingOrder::ClockWise);
+	m_graphicsEngine->setWindingOrder(OWindingOrder::CounterClockWise);
 	m_graphicsEngine->setVertexArrayObject(m_polygonVAO);
 	m_graphicsEngine->setUniformBuffer(m_uniform, 0);
 	m_graphicsEngine->setShaderProgram(m_shader);
 	m_graphicsEngine->drawIndexedTriangles(OTriangleType::TriangleList, 36);
 
 	m_display->present(false);
+
 }
 
 void OGame::onQuit()
